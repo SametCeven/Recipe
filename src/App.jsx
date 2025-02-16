@@ -1,14 +1,12 @@
 import './App.css'
+import Mainpage from './pages/Mainpage'
 
-function App() {
+export default function App() {
 
   return (
-    <>
-      <p className="text-5xl font-primary text-primary ">hello</p>
-      <p className="text-5xl font-title text-secondary">hello</p>
-      <p className="text-5xl font-satisfy">hello</p>
-    </>
+    <div className='flex justify-center align-center'>
+      <Mainpage/>
+    </div>
   )
 }
 
-export default App

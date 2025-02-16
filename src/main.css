@@ -10,3 +10,9 @@
     --color-secondary: #A55E0D;
 }
 
+/*
+<p className="text-5xl font-primary text-primary ">hello</p>
+<p className="text-5xl font-title text-secondary">hello</p>
+<p className="text-5xl font-satisfy">hello</p>
+
+*/
