@@ -6,6 +6,7 @@ export const actions={
     RECIPE_FETCH_FAIL: "RECIPE_FETCH_FAIL",
     GET_ALL_RECIPES_API: "GET_ALL_RECIPES_API",
     SELECT_RECIPE:"SELECT_RECIPE",
+    DELETE_RECIPE:"DELETE_RECIPE",
 }
 
 export function creatorSelectRecipe(id){
@@ -24,7 +25,18 @@ export function getAllRecipesApi() {
             dispatch({ type: actions.RECIPE_FETCH_SUCCESS, payload: response.data.recipes });
         } catch (error) {
             console.error("Error fetching recipes:", error);
-            dispatch({ type: actions.RECIPE_FETCH_FAIL, payload: [] }); 
+            dispatch({ type: actions.RECIPE_FETCH_FAIL, payload: error }); 
+        }
+    };
+}
+
+export function deleteRecipe(id) {
+    return async function (dispatch, getState) {
+        try {
+            const response = await axios.delete(`https://dummyjson.com/recipes/${id}`);
+            dispatch({ type: actions.DELETE_RECIPE, payload: response.data.id });
+        } catch (error) {
+            console.error("Error fetching recipes:", error);
         }
     };
 }
