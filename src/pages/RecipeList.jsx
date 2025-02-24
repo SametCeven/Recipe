@@ -11,6 +11,8 @@ export default function Sidebar() {
     }, [])
     const recipes = useSelector(store => store.recipes)
     const recipesLoading = useSelector(store => store.recipesLoading)
+    const selectedRecipe = useSelector(store => store.selectedRecipe)
+    
     function handleClick(e) {
         dispatch(creatorSelectRecipe(e.target.value));
     }
@@ -23,12 +25,12 @@ export default function Sidebar() {
     }
 
     return (
-        <div className="flex justify-around gap-10 mx-10">
-            <div>
+        <div className="flex mx-10 my-10">
+            <div className="mr-50">
                 <h2 className="ml-4">Recipe List</h2>
                 {recipes.map((recipe) => {
                     return (
-                        <li className="list-none rounded-xl px-3 hover:bg-blue-100 cursor-pointer" onClick={handleClick} key={recipe.id} value={recipe.id}>{recipe.name} </li>
+                        <li className={`list-none text-xs rounded-xl px-3 hover:bg-blue-100 cursor-pointer ${selectedRecipe.id===recipe.id ? "bg-blue-100" : ""}`} onClick={handleClick} key={recipe.id} value={recipe.id}>{recipe.name} </li>
                     )
                 })}
             </div>

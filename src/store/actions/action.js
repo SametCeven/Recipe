@@ -30,6 +30,21 @@ export function getAllRecipesApi() {
     };
 }
 
+const limit = 12;
+
+export function getLimitedRecipesApi() {
+    return async function (dispatch, getState) {
+        try {
+            dispatch({type:actions.RECIPE_FETCH_REQUEST})
+            const response = await axios.get(`https://dummyjson.com/recipes?limit=${limit}`);
+            dispatch({ type: actions.RECIPE_FETCH_SUCCESS, payload: response.data.recipes });
+        } catch (error) {
+            console.error("Error fetching recipes:", error);
+            dispatch({ type: actions.RECIPE_FETCH_FAIL, payload: error }); 
+        }
+    };
+}
+
 export function deleteRecipe(id) {
     return async function (dispatch, getState) {
         try {

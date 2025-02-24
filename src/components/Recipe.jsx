@@ -27,7 +27,7 @@ export default function Recipe() {
     }
 
     return (
-        <div className="w-sm" >
+        <div className="w-xl" >
             <Card>
                 <img
                     alt="Card"
