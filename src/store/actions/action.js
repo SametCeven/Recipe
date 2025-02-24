@@ -7,6 +7,7 @@ export const actions={
     GET_ALL_RECIPES_API: "GET_ALL_RECIPES_API",
     SELECT_RECIPE:"SELECT_RECIPE",
     DELETE_RECIPE:"DELETE_RECIPE",
+    SAVE_RECIPE:"SAVE_RECIPE",
 }
 
 export function creatorSelectRecipe(id){
@@ -15,7 +16,6 @@ export function creatorSelectRecipe(id){
         payload:id,
     })
 }
-
 
 export function getAllRecipesApi() {
     return async function (dispatch, getState) {
@@ -35,6 +35,18 @@ export function deleteRecipe(id) {
         try {
             const response = await axios.delete(`https://dummyjson.com/recipes/${id}`);
             dispatch({ type: actions.DELETE_RECIPE, payload: response.data.id });
+        } catch (error) {
+            console.error("Error fetching recipes:", error);
+        }
+    };
+}
+
+export function saveRecipe(formData) {
+    return async function (dispatch, getState) {
+        try {
+            const response = await axios.post(`https://dummyjson.com/recipes/`);
+            console.log(response);
+            dispatch({ type: actions.SAVE_RECIPE, payload: formData });
         } catch (error) {
             console.error("Error fetching recipes:", error);
         }

@@ -21,6 +21,9 @@ export function reducer(state=stateInitial,action){
         case actions.DELETE_RECIPE:
             const newRecp = state.recipes.filter((r)=>r.id !== action.payload )
             return {...state,recipes:newRecp}
+        case actions.SAVE_RECIPE:
+            const newRecp2 = action.payload
+            return {...state,recipes:[...state.recipes,newRecp2]}    
         default:
             return state;
     }

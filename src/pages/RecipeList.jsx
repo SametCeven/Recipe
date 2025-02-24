@@ -23,12 +23,12 @@ export default function Sidebar() {
     }
 
     return (
-        <div className="flex gap-10 mx-10">
+        <div className="flex justify-around gap-10 mx-10">
             <div>
-                <h2>Recipe List</h2>
+                <h2 className="ml-4">Recipe List</h2>
                 {recipes.map((recipe) => {
                     return (
-                        <li onClick={handleClick} key={recipe.id} value={recipe.id}>{recipe.name} </li>
+                        <li className="list-none rounded-xl px-3 hover:bg-blue-100 cursor-pointer" onClick={handleClick} key={recipe.id} value={recipe.id}>{recipe.name} </li>
                     )
                 })}
             </div>

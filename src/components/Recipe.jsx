@@ -22,7 +22,7 @@ export default function Recipe() {
 
     if (!recipe || recipe.length === 0 || Object.keys(recipe).length === 0) {
         return (
-            <div>  <p>Please select a recipe...</p> </div>
+            <div>  <p className='text-red-600 italic mt-5'>Please select a recipe...</p> </div>
         )
     }
 
