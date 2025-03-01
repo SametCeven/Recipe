@@ -1,4 +1,4 @@
-import { Card, CardBody, CardTitle, CardText, ListGroup, ListGroupItem, CardLink, CardHeader, Spinner,Button } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardText, ListGroup, ListGroupItem, CardLink, CardHeader, Spinner, Button } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteRecipe } from '../store/actions/action';
@@ -8,7 +8,7 @@ export default function Recipe() {
     const dispatch = useDispatch();
     const recipe = useSelector(store => store.selectedRecipe)
     const recipesLoading = useSelector(store => store.recipesLoading)
-    function handleDelete(e){
+    function handleDelete(e) {
         console.log(e.target.value)
         dispatch(deleteRecipe(e.target.value))
     }
@@ -27,50 +27,32 @@ export default function Recipe() {
     }
 
     return (
-        <div className="w-xl" >
-            <Card>
-                <img
-                    alt="Card"
-                    src={recipe.image}
-                />
-                <CardBody>
-                    <CardTitle tag="h5">
-                        {recipe.name}
-                    </CardTitle>
-                    <CardText>
-                        Ingredients:
-                        {recipe.ingredients.map((ingredient, index) => {
-                            return (
-                                <li key={index}>{ingredient}</li>
-                            )
-                        })}
+        <div className="max-w-5xl" >
+            <h1 className='text-header'> {recipe.name} </h1>
+            <div className='flex gap-10'>
+                <div className='w-xs'>
+                    <img className="rounded-2xl" src={recipe.image} alt={recipe.name} />
+                    <div className='flex justify-between mx-10 my-3 italic'>
+                        <span> {recipe.cuisine}  </span>
+                        <span> {recipe.rating}  </span>
+                    </div>
+                </div>
+                <div className='max-w-2xl'>
+                    <div className='mb-3'>
+                        <h4> Ingredients </h4>
+                        {recipe.ingredients.map((ingredient) =>
+                            <li key={ingredient} > {ingredient} </li>
+                        )}
+                    </div>
+                    <div className=''>
+                        <h4> Instructions </h4>
+                        {recipe.instructions.map((instruction) =>
+                            <li key={instruction} > {instruction} </li>
+                        )}
+                    </div>
+                </div>
+            </div>
 
-                    </CardText>
-                    <CardText>
-                        Instructions:
-                        {recipe.instructions.map((instruction, index) => {
-                            return (
-                                <li key={index}>{instruction}</li>
-                            )
-                        })}
-                    </CardText>
-                </CardBody>
-                <ListGroup flush>
-                    <ListGroupItem>
-                        <span>Cuisine: </span> {recipe.cuisine}
-                    </ListGroupItem>
-                    <ListGroupItem>
-                        <span>Difficulty: </span> {recipe.difficulty}
-                    </ListGroupItem>
-                    <ListGroupItem>
-                        <span>Meal Type: </span> {recipe.mealType}
-                    </ListGroupItem>
-                    <ListGroupItem>
-                        <span>Rating: </span> {recipe.rating}
-                    </ListGroupItem>
-                </ListGroup>
-                <Button value={recipe.id} onClick={handleDelete} color="danger">Delete</Button>
-            </Card>
         </div>
     )
 }
