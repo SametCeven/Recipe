@@ -1,30 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quattrocento:wght@400;700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Satisfy&display=swap');
 @import "tailwindcss";
 
-
 @theme {
     --font-primary: "Barlow";
     --font-title: "Verdana";
     --font-satisfy: "Satisfy";
     --color-primary: #1B145C;
     --color-secondary: #A55E0D;
+    --color-header: #001933;
 }
 
-/*
-<p className="text-5xl font-primary text-primary ">hello</p>
-<p className="text-5xl font-title text-secondary">hello</p>
-<p className="text-5xl font-satisfy">hello</p>
-
-*/
-
-body{
-    @apply font-satisfy;
+body {
+    @apply font-primary
 }
 
 .navitem {
-    @apply text-amber-50 underline-offset-3 hover:underline-offset-8;
+    @apply text-amber-50 no-underline hover:underline hover:underline-offset-8 text-gray-300;
+}
+
+.navitem-current {
+    @apply underline underline-offset-8 text-white;
+}
+
+.title {
+    @apply no-underline text-white
 }
 
 .input {
     @apply rounded-xl px-3 hover:bg-blue-100 
+}
+
+.btn-1 {
+    @apply border-1 w-7 h-4 ;
+}
+.btn-2 {
+    @apply w-10 h-4 hover:cursor-pointer
 }

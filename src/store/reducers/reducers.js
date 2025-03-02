@@ -4,7 +4,9 @@ const stateInitial = {
     recipes: [],
     recipesLoading:false,
     selectedRecipe:{},
-    error:"",
+    error:false,
+    loading:false,
+    recipes2:[],
 }
 
 export function reducer(state=stateInitial,action){
@@ -23,7 +25,7 @@ export function reducer(state=stateInitial,action){
             return {...state,recipes:newRecp}
         case actions.SAVE_RECIPE:
             const newRecp2 = action.payload
-            return {...state,recipes:[...state.recipes,newRecp2]}    
+            return {...state,recipes:[...state.recipes,newRecp2]}   
         default:
             return state;
     }
