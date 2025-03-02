@@ -29,3 +29,10 @@ body {
 .input {
     @apply rounded-xl px-3 hover:bg-blue-100 
 }
+
+.btn-1 {
+    @apply border-1 w-7 h-4 ;
+}
+.btn-2 {
+    @apply w-10 h-4 hover:cursor-pointer
+}

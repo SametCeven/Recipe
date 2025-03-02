@@ -1,7 +1,6 @@
-import { Card, CardBody, CardTitle, CardText, ListGroup, ListGroupItem, CardLink, CardHeader, Spinner, Button } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteRecipe } from '../store/actions/action';
+import { creatorSelectRecipe, deleteRecipe } from '../store/actions/action';
 
 
 export default function Recipe() {
@@ -11,6 +10,7 @@ export default function Recipe() {
     function handleDelete(e) {
         console.log(e.target.value)
         dispatch(deleteRecipe(e.target.value))
+        dispatch(creatorSelectRecipe(Number(e.target.value)+1))
     }
 
 
@@ -27,25 +27,28 @@ export default function Recipe() {
     }
 
     return (
-        <div className="max-w-5xl" >
-            <h1 className='text-header'> {recipe.name} </h1>
+        <div className="w-5xl border-1 rounded-2xl p-3" >
+            <h1 className='text-header mb-3 font-title text-secondary'> {recipe.name} </h1>
             <div className='flex gap-10'>
-                <div className='w-xs'>
-                    <img className="rounded-2xl" src={recipe.image} alt={recipe.name} />
+                <div className=''>
+                    <img className="rounded-2xl w-lg " src={recipe.image} alt={recipe.name} />
                     <div className='flex justify-between mx-10 my-3 italic'>
                         <span> {recipe.cuisine}  </span>
                         <span> {recipe.rating}  </span>
                     </div>
+                    <button className='bg-red-400 text-white rounded-3xl' onClick={handleDelete} value={recipe.id}> Delete Recipe </button>
                 </div>
-                <div className='max-w-2xl'>
+                <div className='w-xl'>
                     <div className='mb-3'>
-                        <h4> Ingredients </h4>
+                        <h4 className='font-title text-secondary'> Ingredients </h4>
+                        <div className='flex flex-wrap'>
                         {recipe.ingredients.map((ingredient) =>
-                            <li key={ingredient} > {ingredient} </li>
+                            <li className='w-[50%]' key={ingredient} > {ingredient} </li>
                         )}
+                        </div>
                     </div>
                     <div className=''>
-                        <h4> Instructions </h4>
+                        <h4 className='font-title text-secondary'> Instructions </h4>
                         {recipe.instructions.map((instruction) =>
                             <li key={instruction} > {instruction} </li>
                         )}

@@ -8,6 +8,6 @@
 - ReactFormHook
 - Reactstrap
 
-- TanStack Query
-- DateFns
+Api info:
+https://dummyjson.com/docs/recipes
 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import API from "../../services/api";
 
 export const actions={
     RECIPE_FETCH_REQUEST: "RECIPE_FETCH_REQUEST",
@@ -17,11 +18,14 @@ export function creatorSelectRecipe(id){
     })
 }
 
+
+
+
 export function getAllRecipesApi() {
     return async function (dispatch, getState) {
         try {
             dispatch({type:actions.RECIPE_FETCH_REQUEST})
-            const response = await axios.get("https://dummyjson.com/recipes?limit=0");
+            const response = await API.get("?limit=0");
             dispatch({ type: actions.RECIPE_FETCH_SUCCESS, payload: response.data.recipes });
         } catch (error) {
             console.error("Error fetching recipes:", error);
@@ -30,13 +34,12 @@ export function getAllRecipesApi() {
     };
 }
 
-const limit = 12;
 
-export function getLimitedRecipesApi() {
+export function getLimitedRecipesApi(limit=12,skip=0) {
     return async function (dispatch, getState) {
         try {
             dispatch({type:actions.RECIPE_FETCH_REQUEST})
-            const response = await axios.get(`https://dummyjson.com/recipes?limit=${limit}`);
+            const response = await API.get(`?limit=${limit}&skip=${skip}`);
             dispatch({ type: actions.RECIPE_FETCH_SUCCESS, payload: response.data.recipes });
         } catch (error) {
             console.error("Error fetching recipes:", error);
@@ -48,7 +51,7 @@ export function getLimitedRecipesApi() {
 export function deleteRecipe(id) {
     return async function (dispatch, getState) {
         try {
-            const response = await axios.delete(`https://dummyjson.com/recipes/${id}`);
+            const response = await API.delete(`/${id}`);
             dispatch({ type: actions.DELETE_RECIPE, payload: response.data.id });
         } catch (error) {
             console.error("Error fetching recipes:", error);
@@ -59,7 +62,7 @@ export function deleteRecipe(id) {
 export function saveRecipe(formData) {
     return async function (dispatch, getState) {
         try {
-            const response = await axios.post(`https://dummyjson.com/recipes/`);
+            const response = await API.post(`/`);
             console.log(response);
             dispatch({ type: actions.SAVE_RECIPE, payload: formData });
         } catch (error) {
