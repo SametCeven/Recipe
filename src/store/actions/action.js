@@ -9,6 +9,8 @@ export const actions={
     SELECT_RECIPE:"SELECT_RECIPE",
     DELETE_RECIPE:"DELETE_RECIPE",
     SAVE_RECIPE:"SAVE_RECIPE",
+    LOGIN:"LOGIN",
+    LOGOUT:"LOGOUT"
 }
 
 export function creatorSelectRecipe(id){
@@ -18,6 +20,18 @@ export function creatorSelectRecipe(id){
     })
 }
 
+export function createrLogin(loginData){
+    return({
+        type:actions.LOGIN,
+        payload:loginData,
+    })
+}
+
+export function createrLogout(){
+    return({
+        type:actions.LOGOUT,
+    })
+}
 
 
 

@@ -1,17 +1,16 @@
 import { useDispatch, useSelector } from "react-redux"
 import { creatorSelectRecipe, getLimitedRecipesApi } from "../store/actions/action";
-import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 export default function Discover() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    useEffect(() => {
-        dispatch(getLimitedRecipesApi())
-    }, [])
-
     const recipes = useSelector(store => store.recipes)
+
+    if(recipes.length < 12){
+        dispatch(getLimitedRecipesApi(12))
+    }
 
     function handleClick(e) {
         const id = Number(e.target.getAttribute("value"))
