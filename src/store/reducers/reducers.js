@@ -6,7 +6,14 @@ const stateInitial = {
     selectedRecipe:{},
     error:false,
     loading:false,
-    recipes2:[],
+    user:{},
+    registeredUsers:[{
+        name:"admin",
+        password:"123",
+    },{
+        name:"admin2",
+        password:"123",
+    }]
 }
 
 export function reducer(state=stateInitial,action){
@@ -26,6 +33,18 @@ export function reducer(state=stateInitial,action){
         case actions.SAVE_RECIPE:
             const newRecp2 = action.payload
             return {...state,recipes:[...state.recipes,newRecp2]}   
+        case actions.LOGIN:
+            const foundUser = state.registeredUsers.filter(
+                (user)=>user.name===action.payload.name && user.password ===action.payload.password)
+            console.log(foundUser)
+            if( foundUser.length !== 0){
+                return {...state,user:action.payload}
+            }else{
+                return {...state,user:{name:"error",password:"error"}}
+            }
+        case actions.LOGOUT:
+            return {...state, user:{}}
+
         default:
             return state;
     }

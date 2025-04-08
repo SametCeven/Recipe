@@ -36,7 +36,7 @@ export default function Recipe() {
                         <span> {recipe.cuisine}  </span>
                         <span> {recipe.rating}  </span>
                     </div>
-                    <button className='bg-red-400 text-white rounded-3xl' onClick={handleDelete} value={recipe.id}> Delete Recipe </button>
+                    <button className='bg-red-500 text-white w-35' onClick={handleDelete} value={recipe.id}> Delete Recipe </button>
                 </div>
                 <div className='w-xl'>
                     <div className='mb-3'>
